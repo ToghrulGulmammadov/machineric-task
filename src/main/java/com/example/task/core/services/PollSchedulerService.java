@@ -1,4 +1,4 @@
-package com.example.task.services;
+package com.example.task.core.services;
 
 import java.util.Optional;
 import java.util.concurrent.ScheduledFuture;
@@ -15,8 +15,12 @@ public class PollSchedulerService {
   private final TaskScheduler taskScheduler;
   private ScheduledFuture<?> scheduledFuture;
 
-  public void startScheduler(Optional<Integer> interval, Runnable runnableMethod) {
-    scheduledFuture = taskScheduler.scheduleAtFixedRate(runnableMethod, interval.orElse(INTERVAL_10_SEC));
+  public void startScheduler(Optional<Integer> intervalOptional, Runnable runnableMethod) {
+    int interval = intervalOptional.orElse(INTERVAL_10_SEC);
+    if (interval < 1) {
+      throw new IllegalStateException("Interval must be positive number");
+    }
+    scheduledFuture = taskScheduler.scheduleAtFixedRate(runnableMethod, interval);
   }
 
   public void stopScheduler() {

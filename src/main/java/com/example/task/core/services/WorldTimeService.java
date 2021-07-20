@@ -1,7 +1,7 @@
-package com.example.task.services;
+package com.example.task.core.services;
 
-import com.example.task.models.WorldTime;
-import com.example.task.repository.WorldTimeRepository;
+import com.example.task.db.models.WorldTimeEntity;
+import com.example.task.db.repository.WorldTimeRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,13 +14,12 @@ public class WorldTimeService {
   private final WorldTimeRepository repository;
   private final ApiCallService apiCallService;
 
-  public WorldTime saveWorldTime() {
-    WorldTime worldTime = apiCallService.get(URL, WorldTime.class);
-    // TODO: create separate entity and model
+  public WorldTimeEntity saveWorldTime() {
+    WorldTimeEntity worldTime = apiCallService.get(URL, WorldTimeEntity.class);
     return repository.save(worldTime);
   }
 
-  public List<WorldTime> getAll() {
+  public List<WorldTimeEntity> getAll() {
     return repository.findAll();
   }
 

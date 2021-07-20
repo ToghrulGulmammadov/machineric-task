@@ -1,4 +1,4 @@
-package com.example.task.services;
+package com.example.task.core.services;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
