@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PollSchedulerService {
+public class PollingSchedulerService {
 
   private static final Integer INTERVAL_10_SEC = 10000;
 

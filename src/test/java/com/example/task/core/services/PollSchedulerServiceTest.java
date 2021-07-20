@@ -9,7 +9,7 @@ import org.mockito.MockitoAnnotations;
 class PollSchedulerServiceTest {
 
   @InjectMocks
-  private PollSchedulerService service;
+  private PollingSchedulerService service;
 
   @BeforeEach
   void init() {

@@ -1,6 +1,6 @@
 package com.example.task.api;
 
-import com.example.task.core.services.PollSchedulerService;
+import com.example.task.core.services.PollingSchedulerService;
 import com.example.task.core.services.WorldTimeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/poll")
-public class PollController {
+@RequestMapping("/polling")
+public class PollingController {
 
-  private final PollSchedulerService pollSchedulerService;
+  private final PollingSchedulerService pollSchedulerService;
   private final WorldTimeService worldTimeService;
 
   @GetMapping("/start")
