@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +20,15 @@ public class PollController {
   private final PollSchedulerService pollSchedulerService;
   private final WorldTimeService worldTimeService;
 
-  @GetMapping("/start/{interval}")
-  public ResponseEntity<String> start(@PathVariable Optional<Integer> interval) {
-    pollSchedulerService.startScheduler(interval, worldTimeService::saveWorldTime);
+  @GetMapping("/start}")
+  public ResponseEntity<String> start() {
+    pollSchedulerService.startScheduler(worldTimeService::saveWorldTime);
+    return new ResponseEntity<>("Data pulling started successfully!", HttpStatus.OK);
+  }
+
+  @PutMapping("/{interval}")
+  public ResponseEntity<String> update(@PathVariable Optional<Integer> interval) {
+    pollSchedulerService.updateScheduler(interval, worldTimeService::saveWorldTime);
     return new ResponseEntity<>("Data pulling started successfully!", HttpStatus.OK);
   }
 

@@ -15,7 +15,13 @@ public class PollSchedulerService {
   private final TaskScheduler taskScheduler;
   private ScheduledFuture<?> scheduledFuture;
 
-  public void startScheduler(Optional<Integer> intervalOptional, Runnable runnableMethod) {
+  public void startScheduler(Runnable runnableMethod) {
+    scheduledFuture = taskScheduler.scheduleAtFixedRate(runnableMethod, INTERVAL_10_SEC);
+  }
+
+  public void updateScheduler(Optional<Integer> intervalOptional, Runnable runnableMethod) {
+    stopScheduler();
+
     int interval = intervalOptional.orElse(INTERVAL_10_SEC);
     if (interval < 1) {
       throw new IllegalStateException("Interval must be positive number");
