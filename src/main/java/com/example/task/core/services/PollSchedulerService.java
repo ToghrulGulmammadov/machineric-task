@@ -20,12 +20,12 @@ public class PollSchedulerService {
   }
 
   public void updateScheduler(Optional<Integer> intervalOptional, Runnable runnableMethod) {
-    stopScheduler();
-
-    int interval = intervalOptional.orElse(INTERVAL_10_SEC);
+    int interval = intervalOptional.orElseThrow(() -> new IllegalStateException("Interval is not provided"));
     if (interval < 1) {
       throw new IllegalStateException("Interval must be positive number");
     }
+    stopScheduler();
+
     scheduledFuture = taskScheduler.scheduleAtFixedRate(runnableMethod, interval);
   }
 

@@ -23,19 +23,19 @@ public class PollController {
   @GetMapping("/start}")
   public ResponseEntity<String> start() {
     pollSchedulerService.startScheduler(worldTimeService::saveWorldTime);
-    return new ResponseEntity<>("Data pulling started successfully!", HttpStatus.OK);
+    return new ResponseEntity<>("Polling started successfully!", HttpStatus.OK);
   }
 
   @PutMapping("/{interval}")
   public ResponseEntity<String> update(@PathVariable Optional<Integer> interval) {
     pollSchedulerService.updateScheduler(interval, worldTimeService::saveWorldTime);
-    return new ResponseEntity<>("Data pulling started successfully!", HttpStatus.OK);
+    return new ResponseEntity<>("Polling updated successfully!", HttpStatus.OK);
   }
 
   @GetMapping("/stop")
   public ResponseEntity<String> stop() {
     pollSchedulerService.stopScheduler();
-    return new ResponseEntity<>("Data pulling stopped!", HttpStatus.OK);
+    return new ResponseEntity<>("Polling stopped!", HttpStatus.OK);
   }
 
 }

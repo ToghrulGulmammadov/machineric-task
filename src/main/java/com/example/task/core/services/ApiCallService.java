@@ -10,12 +10,12 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class ApiCallService {
 
-  private final RestTemplate restTemplate = new RestTemplate();
+  private final RestTemplate restTemplate;
 
   public <T> T get(String url, Class<T> classType) {
     ResponseEntity<T> response = restTemplate.getForEntity(url, classType);
     return Optional.ofNullable(response.getBody()).orElseThrow(
-        () -> new IllegalStateException("Response body is null")
+        () -> new IllegalStateException("Could not retrieve data")
     );
   }
 
