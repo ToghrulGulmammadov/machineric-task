@@ -24,6 +24,15 @@ class ApiCallServiceTest {
   @BeforeEach
   void init() {
     MockitoAnnotations.initMocks(this);
+
+    MockitoAnnotations.initMocks(this);
+
+    service = new ApiCallService() {
+      @Override
+      public RestTemplate createRestTemplate() {
+        return template;
+      }
+    };
   }
 
   @Test

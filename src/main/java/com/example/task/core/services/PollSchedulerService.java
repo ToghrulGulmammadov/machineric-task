@@ -1,6 +1,5 @@
 package com.example.task.core.services;
 
-import java.util.Optional;
 import java.util.concurrent.ScheduledFuture;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.TaskScheduler;
@@ -19,8 +18,7 @@ public class PollSchedulerService {
     scheduledFuture = taskScheduler.scheduleAtFixedRate(runnableMethod, INTERVAL_10_SEC);
   }
 
-  public void updateScheduler(Optional<Integer> intervalOptional, Runnable runnableMethod) {
-    int interval = intervalOptional.orElseThrow(() -> new IllegalStateException("Interval is not provided"));
+  public void updateScheduler(Integer interval, Runnable runnableMethod) {
     if (interval < 1) {
       throw new IllegalStateException("Interval must be positive number");
     }

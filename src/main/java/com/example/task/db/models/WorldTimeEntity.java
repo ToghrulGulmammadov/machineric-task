@@ -10,7 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @Builder
@@ -24,23 +25,24 @@ public class WorldTimeEntity {
   private Long id;
 
   private String abbreviation;
-  private String clientIp;
+  private String client_ip;
   private String datetime;
-  private int dayOfWeek;
-  private int dayOfYear;
+  private int day_of_week;
+  private int day_of_year;
   private boolean dst;
-  private String dstFrom;
-  private int dstOffset;
-  private String dstUntil;
-  private int rawOffset;
-  private String timeZone;
-  private int unixTime;
-  private String utcDatetime;
-  private String utcOffset;
-  private int weekNumber;
+  private String dst_from;
+  private int dst_offset;
+  private String dst_until;
+  private int raw_offset;
+  private String timezone;
+  private int unixtime;
+  private String utc_datetime;
+  private String utc_offset;
+  private int week_number;
 
-  @CreatedDate
-  @Column(name = "created_at", nullable = false, updatable = false)
+  @CreationTimestamp
+  @Column(name = "created_at")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private LocalDateTime createdAt;
 
 }
